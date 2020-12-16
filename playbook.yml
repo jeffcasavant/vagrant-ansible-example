@@ -1,0 +1,35 @@
+---
+- hosts: default
+  become: true
+  become_method: sudo
+
+  vars:
+    username: somebody
+
+  pre_tasks:
+    - name: Update apt cache
+      apt: update_cache=yes cache_valid_time=3600
+
+  tasks:
+    - name: Install some packages
+      package:
+        name:
+          - vim
+        state: present
+
+    - name: Create a user
+      user:
+        name: '{{ username }}'
+
+    - name: Download a thing
+      get_url:
+        url: https://gist.githubusercontent.com/jeffcasavant/13b23fc6ba4cb458b70fc38f35efd6c7/raw/cd14388ca6c55b5c406cbab00a0717d8a496202b/.vimrc
+        dest: '/home/{{ username }}/.vimrc'
+
+    - name: Install a config file
+      copy:
+        src: config/dot_bashrc
+        dest: '/home/{{ username }}/.bashrc'
+        mode: 0744
+        owner: '{{ username }}'
+        group: '{{ username }}'

@@ -1,0 +1,29 @@
+export AWS_SDK_LOAD_CONFIG=1 # https://github.com/terraform-providers/terraform-provider-aws/issues/8052#issuecomment-508993767
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_SESSION_TOKEN_TTL=2h
+export AWS_ASSUME_ROLE_TTL=2h
+export EDITOR=vim
+export HISTCONTROL=ignoreboth
+export HISTFILESIZE=200000
+export HISTSIZE=1000
+export PROMPT_COMMAND='echo -ne "\033]0;$PWD\007"'
+export PS1='[\u@\h \W]\$ '
+export RTV_EDITOR=$EDITOR
+export TERM=xterm-256color
+
+#set -o vi
+
+alias cd....='cd ../../..'
+alias cd...='cd ../..'
+alias cd..='cd ..'
+alias ls='ls --color=auto'
+alias sl='ls --color=auto'
+alias uuid="cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1"
+alias weather="curl wttr.in/columbus"
+
+# Setup scripts
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+    . /usr/share/git/completion/git-completion.bash
+fi
+
+date
